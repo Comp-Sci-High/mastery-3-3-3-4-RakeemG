@@ -11,16 +11,26 @@ const app = express();
 /**
  * Add a route to /name that displays your name as plain text
  */
-
+app.get('/name', (request, response) => {
+    response.send('Rakeem');
 
 /**
  * Add a route to /about that displays a JSON object with details describing yourself
  */
-
+app.get('/about', (request, response) => {
+    response.json({
+        "data": {
+            "name": "Rakeem",
+            "age": "17",
+        }
+    });
 
 /**
  * Add 404 Middleware 
  */
+app.use((request, response, next) => {
+    response.status(404).send('404 Not Found');
+});
 
 
 app.listen(3000, () => {
